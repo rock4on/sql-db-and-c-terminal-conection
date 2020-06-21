@@ -31,11 +31,14 @@ namespace bd
         private async void button1_Click(object sender, EventArgs e)
         {
             values = new Dictionary<string, string>();
+            //sending the sql command that was written in the texbox to the api and waiting for a response
             values.Add("data", richTextBox1.Text);
             var content = new FormUrlEncodedContent(values);
-
             var response = await client.PostAsync("http://localhost/sql/ciau.php", content);
             var responseString = await response.Content.ReadAsStringAsync();
+            ///
+            
+            //Parsing the response data 
             DataTable a = new DataTable();
             if (responseString == "0 results")
             {
